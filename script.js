@@ -22,9 +22,9 @@ clientName.addEventListener('input', () => clientName.setCustomValidity(''));
 phone.addEventListener('input', () => phone.setCustomValidity(''));
 form.addEventListener('submit', event => {
  event.preventDefault();
- clientName.setCustomValidity(clientName.value.trim() ? '' : 'Введите ваше имя.');
+ clientName.setCustomValidity(clientName.value.trim() ? '' : (document.documentElement.lang === 'en' ? 'Please enter your name.' : 'Введите ваше имя.'));
  const digits = phone.value.replace(/\D/g, '');
- phone.setCustomValidity(/^[+\d\s()\-]+$/.test(phone.value) && digits.length >= 10 && digits.length <= 15 ? '' : 'Введите телефон: от 10 до 15 цифр.');
+ phone.setCustomValidity(/^[+\d\s()\-]+$/.test(phone.value) && digits.length >= 10 && digits.length <= 15 ? '' : (document.documentElement.lang === 'en' ? 'Please enter a phone number with 10 to 15 digits.' : 'Введите телефон: от 10 до 15 цифр.'));
  if (!form.reportValidity()) return;
  form.reset(); form.hidden = true; success.hidden = false; success.focus();
 });
